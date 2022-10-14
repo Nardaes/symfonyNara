@@ -1,2 +1,2 @@
 # symfonyNara
-twitter like fait avec symfony
+twitter like fait avec symfony 6
