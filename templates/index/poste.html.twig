@@ -1,0 +1,51 @@
+
+    <div class="card">
+        <div class="card-body">
+            <div class="poste">
+                <div class="imageprofil">
+                    <img src="{{ asset(poste.user.photoDeProfil) }}"> 
+                </div> 
+                <div>
+                    {{ poste.user.pseudo }}, 
+                    {{ poste.statusposte }}
+                </div>
+
+                <div></div>
+                <div class="contenueposte">
+                    <div>
+                        {{ poste.descriptionposte }}
+                    </div>
+                    {% if poste.imageposte%}
+                    <div>
+                        <img src="{{ asset(poste.imageposte) }}">
+                    </div> 
+                    {% endif %}
+                </div>
+
+                <div></div>
+                <div class="infoposte">
+
+                    <div></div>
+
+                    <div>
+                        <i data-feather="message-square" class="feather-icon"></i>
+                        {{ poste.nombrereponse }}
+                    </div>
+
+                    
+
+                    <div>
+                        {{ poste.dateposte| date('d/m/Y') }}
+                    </div>
+                </div>
+
+               
+                 
+ 
+                
+
+                
+            </div>
+        </div>
+    </div>
+
