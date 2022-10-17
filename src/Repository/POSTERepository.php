@@ -46,8 +46,8 @@ class POSTERepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('p')
             //->andWhere('p.id = :poste')
-            // //->setParameter('poste', $poste)
-            ->orderBy('nombreReponse', 'DESC')
+            //->setParameter('poste', $poste)
+            //->orderBy('p.nombreReponse', 'DESC')
             ->setMaxResults(self::PAGINATOR_PER_PAGE)
             ->setFirstResult($offset)
             ->getQuery()

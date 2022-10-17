@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\POSTERepository;
 use App\Entity\POSTE;
+use App\Form\EcrireposteFormeType;
 use Twig\Environment;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -37,7 +38,6 @@ class IndexController extends AbstractController
         $paginator = $posteRepository->getPostePaginator($offset);
 
         
-
 
         return new Response($twig->render('index/index.html.twig', [
             'postes' => $paginator,
