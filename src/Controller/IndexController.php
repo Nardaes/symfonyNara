@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\POSTERepository;
 use App\Entity\POSTE;
-use App\Form\EcrireposteFormeType;
+use App\Form\EcrireposteFormType;
 use Twig\Environment;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -37,12 +37,20 @@ class IndexController extends AbstractController
         $offset = max(0, $request->query->getInt('offset', 0));
         $paginator = $posteRepository->getPostePaginator($offset);
 
-        
+        for($i=POSTERepository::PAGINATOR_PER_PAGE; $i >= 1 ; $i--){
+            if (count($paginator) % $i == 0){
+                $that = $i;
+                $i = -1;
+            }
+        }
 
         return new Response($twig->render('index/index.html.twig', [
             'postes' => $paginator,
             'previous' => $offset - POSTERepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + POSTERepository::PAGINATOR_PER_PAGE),
+            'now' => $offset,
+            'nbr' => POSTERepository::PAGINATOR_PER_PAGE,
+            'that' => $that,
         ]));
     }
 

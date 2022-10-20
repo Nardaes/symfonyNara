@@ -17,6 +17,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\GreaterThan;
+use Symfony\Component\Validator\Constraints\LessThan;
 
 class RegistrationFormType extends AbstractType
 {
@@ -89,7 +91,17 @@ class RegistrationFormType extends AbstractType
             ])
 
             ->add('annee_naissance', NumberType::class, [
-                'attr' => ['class' => 'form-control form-control-lg']
+                'attr' => ['class' => 'form-control form-control-lg'],
+                'constraints' => [
+                    new LessThan([
+                        'value' => date("Y") - 18,
+                        'message' => 'You must have 18 year old',
+                    ]),
+                    new GreaterThan([
+                        'value' => 1900,
+                        'message' => 'You must have been born after 1900',
+                    ])
+                ],
             ])
 
             

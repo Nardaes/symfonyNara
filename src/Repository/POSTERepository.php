@@ -17,7 +17,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class POSTERepository extends ServiceEntityRepository
 {
-    public const PAGINATOR_PER_PAGE = 20; //even number 
+    public const PAGINATOR_PER_PAGE = 4; //even number 
 
     public function __construct(ManagerRegistry $registry)
     {
@@ -47,7 +47,7 @@ class POSTERepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('p')
             //->andWhere('p.id = :poste')
             //->setParameter('poste', $poste)
-            //->orderBy('p.nombreReponse', 'DESC')
+            ->orderBy('p.datePoste', 'DESC')
             ->setMaxResults(self::PAGINATOR_PER_PAGE)
             ->setFirstResult($offset)
             ->getQuery()
