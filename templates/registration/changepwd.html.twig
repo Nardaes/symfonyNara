@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Write post{% endblock %}
+
+{% block body %}
+
+
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative" style="background:url(assets/images/big/auth-bg.jpg) no-repeat center center;">
+    <div class="auth-box row">
+        <div class="bg-white">
+            <div class="p-3">
+                <h2 class="mt-3 text-center">Change Password</h2>
+                
+                {{ form_start(changepwdForm) }}
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                {{ form_row(changepwdForm.plainPassword.first, {
+                                    label: 'Password'
+                                }) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                {{ form_row(changepwdForm.plainPassword.second, {
+                                    label: 'Verified Password'
+                                }) }}   
+                            </div>
+                        </div>
+
+                        
+
+
+                        <div class="col-lg-12 text-center">
+                            <button type="submit" class="btn btn-block btn-dark">Change</button>
+                        </div>
+                    </div>
+               {{ form_end(changepwdForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

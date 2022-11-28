@@ -1,0 +1,125 @@
+
+/* for the posts */
+.poste{
+    display: grid;
+    grid-template-columns:  15% 85%;
+    gap: 5px;
+
+   text-decoration: none;
+   color : black;
+   
+}
+
+.pseudoPoste{
+    padding-left: 10 px ;
+}
+
+.infoposte{
+    display: grid;
+    grid-template-columns:  20% 40% 30%;
+}
+
+
+.imageprofil img{
+    border-radius: 50%;
+    border: #a696e6 solid 2px;
+    width:50px;
+    height:50px;
+}
+
+/* @media screen and (max-width: 800px) {
+    .imageprofil img{
+        width:100%;
+        max-width:50px;
+        max-height:50px;
+        height:100%;
+    }
+} */
+
+.contenueposte{
+    padding: 10px;
+}
+
+.contenueposte img{
+    width:100%;
+    max-width:350px;
+}
+
+.card{
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+@media screen and (min-width: 800px) {
+    .card{
+        max-width:600px;
+        margin-right: 20%;
+        margin-left: 20%;
+    }
+}
+
+
+/* for other fiture */
+#Tlogo{
+    text-decoration: none;
+
+}
+
+.page-wrapper{
+    padding-top: 110px !important;
+    padding-bottom: 30px !important;
+    background-color: #a696e6 !important;
+}
+
+/* for the write post form */
+
+.buttonPourPoste{
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    z-index: 1;
+}
+
+/* homepage */
+
+.nextpre{
+    margin-left: 2%;
+}
+
+@media screen and (min-width: 800px) {
+    .nextpre{
+        margin-left: 30%;
+    }
+}
+
+/* page de login registration changer de mdp */
+.bg-white{
+    max-width: 500px;
+}
+
+.form-control {
+    border: 1px solid #000000 !important; 
+}
+
+.auth-wrapper{
+    background-color: #a696e6 !important;
+    
+}
+label , .mt-3 , .mt-5 {
+    color: black !important;
+}
+
+.imgnav img{
+    border-radius: 50%;
+    border: #a696e6 solid 2px;
+    width:50px;
+    height:50px;
+}
+
+select.form-control[multiple], select.form-control[size], textarea.form-control {
+    height: 300px !important;
+}
+
+input[type=radio], input[type=checkbox] {
+    margin-left: 10px;
+}

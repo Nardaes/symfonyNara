@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+
+
+    {% for poste in postes %}
+        <a href="{{ path('thisposte_show',{id:poste.id}) }}">
+            {% include 'index/poste.html.twig' %}
+        </a>
+    {% endfor %}
+
+    <div class="nextpre">   
+            <ul class="pagination">
+                {% if previous >= 0 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('poste_show', {offset: previous }) }}">
+                        Previous
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if previous >= 0 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('poste_show', {offset: 0 }) }}">1</a>
+                </li>
+                {% endif %}
+
+                {% if previous >= nbr * 2 %}
+                <li class="page-item">
+                    <span class="page-link">...</span>
+                </li>
+                {% endif %}
+
+                {% if previous >= nbr %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('poste_show', {offset: previous }) }}">{{(previous / nbr)+1}}</a>
+                </li>
+                {% endif %}
+
+                <li class="page-item active">
+                    <a class="page-link" href="{{ path('poste_show', {offset: now }) }}">{{(now / nbr)+1}}</a>
+                </li>
+
+                {% if next < postes|length %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('poste_show', {offset: next }) }}">{{(next / nbr)+1}}</a>
+                </li>
+                {% endif %}
+
+
+                {% if next + nbr * 2 < postes|length %}
+                <li class="page-item">
+                    <span class="page-link">...</span>
+                </li>
+                {% endif %}
+
+
+                {% if next + nbr < postes|length %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('poste_show', {offset: postes|length + that - nbr }) }}">{{((postes|length + that - nbr) / nbr)+1}}</a>
+                </li>
+                {% endif %}
+
+                {% if next < postes|length %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path('poste_show', {offset: next }) }}">
+                        Next
+                    </a>
+                </li>
+                {% endif %}
+          </ul>
+    </div>
+
+    {% if app.user %}
+        {% include 'ecrireModal.html.twig' %}
+    {% endif %}
+    
+{% endblock %}
