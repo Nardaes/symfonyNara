@@ -10,6 +10,25 @@
    
 }
 
+@media screen and (max-width: 800px) {
+
+    .imageprofil img{
+        
+        width:10px;
+        height:10px;
+    }
+
+    .poste{
+        display: grid;
+        grid-template-columns:  5% 85%;
+        gap: 5px;
+    
+       text-decoration: none;
+       color : black;
+       
+    }
+}
+
 .pseudoPoste{
     padding-left: 10 px ;
 }
@@ -123,3 +142,16 @@ select.form-control[multiple], select.form-control[size], textarea.form-control 
 input[type=radio], input[type=checkbox] {
     margin-left: 10px;
 }
+
+#testdiv{
+    display: none;
+}
+
+html{
+    background-color: #a696e6;
+}
+
+#sfwdt53414e, #sfwdt9ef678, #sfToolbarClearer-c13e7a, #sfToolbarClearer-993155, #sfToolbarClearer-ad0592, #sfToolbarClearer-8eebfc, #sfToolbarClearer-541359, .sf-toolbar-clearer{
+    display: none !important;
+}
+
