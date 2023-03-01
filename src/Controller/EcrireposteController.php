@@ -29,7 +29,19 @@ class EcrireposteController extends AbstractController
             $poste->setNombreReponse(0);
             $poste->setUser($this->getUser());
 
+            if($form->get('ImagePoste')->getData()){
+                $image = $form->get('ImagePoste')->getData();
 
+                $fichier = md5(uniqid()).'.'.$image->guessExtension();
+
+                $image->move(
+                    $this->getParameter('imagePoste'),
+                    $fichier
+                );
+
+                $poste->setImagePoste($fichier);
+
+            }
 
             $entityManager->persist($poste);
             $entityManager->flush();

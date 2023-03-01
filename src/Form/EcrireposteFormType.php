@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class EcrireposteFormType extends AbstractType
 {
@@ -27,6 +28,7 @@ class EcrireposteFormType extends AbstractType
                     ]),
                 ]
                 ])
+            ->add('ImagePoste', FileType::class)
         ;
     }
 
