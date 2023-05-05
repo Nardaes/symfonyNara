@@ -45,9 +45,13 @@ class POSTE
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\OneToMany(mappedBy: 'favPoste', targetEntity: Favory::class)]
+    private Collection $userWhoFav;
+
     public function __construct()
     {
         $this->nOTIFICATIONs = new ArrayCollection();
+        $this->userWhoFav = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -123,6 +127,36 @@ class POSTE
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favory>
+     */
+    public function getUserWhoFav(): Collection
+    {
+        return $this->userWhoFav;
+    }
+
+    public function addUserWhoFav(Favory $userWhoFav): self
+    {
+        if (!$this->userWhoFav->contains($userWhoFav)) {
+            $this->userWhoFav->add($userWhoFav);
+            $userWhoFav->setFavPoste($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserWhoFav(Favory $userWhoFav): self
+    {
+        if ($this->userWhoFav->removeElement($userWhoFav)) {
+            // set the owning side to null (unless already changed)
+            if ($userWhoFav->getFavPoste() === $this) {
+                $userWhoFav->setFavPoste(null);
+            }
+        }
 
         return $this;
     }

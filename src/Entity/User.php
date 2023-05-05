@@ -63,9 +63,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: POSTE::class)]
     private Collection $myPoste;
 
+    #[ORM\OneToMany(mappedBy: 'favUser', targetEntity: Favory::class)]
+    private Collection $myFav;
+
     public function __construct()
     {
         $this->myPoste = new ArrayCollection();
+        $this->myFav = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -271,6 +275,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($myPoste->getUser() === $this) {
                 $myPoste->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favory>
+     */
+    public function getMyFav(): Collection
+    {
+        return $this->myFav;
+    }
+
+    public function addMyFav(Favory $myFav): self
+    {
+        if (!$this->myFav->contains($myFav)) {
+            $this->myFav->add($myFav);
+            $myFav->setFavUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMyFav(Favory $myFav): self
+    {
+        if ($this->myFav->removeElement($myFav)) {
+            // set the owning side to null (unless already changed)
+            if ($myFav->getFavUser() === $this) {
+                $myFav->setFavUser(null);
             }
         }
 

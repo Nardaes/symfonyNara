@@ -14,6 +14,7 @@
                     {{ poste.statusposte }}</span>
                 </div>
 
+
                 <div id="avantPoste"></div>
                 <div class="contenueposte">
                     <div>
@@ -21,7 +22,7 @@
                     </div>
                     {% if poste.imageposte%}
                     <div>
-                        <img src="{{ asset('image/poste/' ~ poste.imageposte) }}">
+                        {% if app.user %}<img src="{{ asset('image/poste/' ~ poste.imageposte) }}">{% endif %}
                     </div> 
                     {% endif %}
                 </div>
@@ -31,8 +32,7 @@
                 <div class="infoposte">
 
                     <div>
-                        <i data-feather="message-square" class="feather-icon"></i>
-                        {{ poste.nombrereponse }}
+                        {% if app.user %}<a href="{{ path('app_favupdate',{id:poste.id}) }}"><i data-feather="star" class="feather-icon"></i></a>{% endif %}
                     </div>
 
                     <div></div>
