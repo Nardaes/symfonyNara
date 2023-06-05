@@ -169,15 +169,9 @@ html{
   
   .thepagination span {
     display: inline-block;
-    border-right: #000000 solid 0.5px;
-    border-top: #000000 solid 0.5px;
-    border-bottom: #000000 solid 0.5px;
+    border: #000000 solid 0.5px;
     background-color: #fff;
-    padding: 10px 10px;
-  }
-
-  .first{
-    border-left: #000000 solid 0.5px;
+    padding: 10px 15px;
   }
   
   .thepagination span a {
