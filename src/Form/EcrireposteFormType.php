@@ -28,7 +28,17 @@ class EcrireposteFormType extends AbstractType
                     ]),
                 ]
                 ])
-            ->add('ImagePoste', FileType::class)
+            ->add('ImagePoste', FileType::class, [
+                'label' => 'Image',
+                'required' => false,
+                'constraints' => [
+                    new \Symfony\Component\Validator\Constraints\File([
+                        'maxSize' => '2M',
+                        'mimeTypes' => ['image/jpeg', 'image/png'],
+                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (JPEG, PNG).',
+                    ]),
+                ],
+            ])
         ;
     }
 

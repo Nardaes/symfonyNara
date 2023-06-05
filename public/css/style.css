@@ -169,9 +169,13 @@ html{
   
   .thepagination span {
     display: inline-block;
-    border: #000000 solid 0.5px;
+    border-right: #000000 solid 0.5px;
+    border-left: #000000 solid 0.25px;
+    border-top: #000000 solid 0.8px;
+    border-bottom: #000000 solid 0.8px;
     background-color: #fff;
     padding: 10px 15px;
+    
   }
   
   .thepagination span a {

@@ -36,6 +36,7 @@ class IndexController extends AbstractController
     {
 
         $query = $posteRepository->createQueryBuilder('e')
+            ->orderBy('e.id', 'DESC')
             ->getQuery();
 
         $pagination = $paginator->paginate(
