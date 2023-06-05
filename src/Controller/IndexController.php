@@ -10,6 +10,7 @@ use App\Entity\POSTE;
 use App\Form\EcrireposteFormType;
 use Twig\Environment;
 use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\PaginatorInterface;
 
 class IndexController extends AbstractController
 {
@@ -31,27 +32,23 @@ class IndexController extends AbstractController
     
     #[Route('/', name: 'app_index')]
     #[Route('/poste', name: 'poste_show')]
-    public function show(Request $request, Environment $twig, POSTERepository $posteRepository): Response
+    public function show(Request $request, Environment $twig, POSTERepository $posteRepository, PaginatorInterface $paginator): Response
     {
 
-        $offset = max(0, $request->query->getInt('offset', 0));
-        $paginator = $posteRepository->getPostePaginator($offset);
+        $query = $posteRepository->createQueryBuilder('e')
+            ->getQuery();
 
-        for($i=POSTERepository::PAGINATOR_PER_PAGE; $i >= 1 ; $i--){
-            if (count($paginator) % $i == 0){
-                $that = $i;
-                $i = -1;
-            }
-        }
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10 // Nombre d'éléments par page
+        );
 
-        return new Response($twig->render('index/index.html.twig', [
-            'postes' => $paginator,
-            'previous' => $offset - POSTERepository::PAGINATOR_PER_PAGE,
-            'next' => min(count($paginator), $offset + POSTERepository::PAGINATOR_PER_PAGE),
-            'now' => $offset,
-            'nbr' => POSTERepository::PAGINATOR_PER_PAGE,
-            'that' => $that,
-        ]));
+        // Renvoyer la pagination à la vue
+        return $this->render('index/index.html.twig', [
+            'pagination' => $pagination,
+        ]);
+
     }
 
     #[Route('/thisposte/{id}', name: 'thisposte_show')]

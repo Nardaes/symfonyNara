@@ -42,14 +42,13 @@ class POSTERepository extends ServiceEntityRepository
         }
     }
 
-    public function getPostePaginator(int $offset): Paginator
+    public function getPostePaginator(): Paginator
     {
         $query = $this->createQueryBuilder('p')
             //->andWhere('p.id = :poste')
             //->setParameter('poste', $poste)
             ->orderBy('p.datePoste', 'DESC')
-            ->setMaxResults(self::PAGINATOR_PER_PAGE)
-            ->setFirstResult($offset)
+            // ->setMaxResults(self::PAGINATOR_PER_PAGE)
             ->getQuery()
         ;
 
