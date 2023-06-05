@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\POSTE;
+use App\Entity\User;
 //use App\Entity\NOTIFICATION;
 
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -48,6 +49,7 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
 
 	yield MenuItem::linkToCrud('POSTE', 'fas fa-comment-alt', POSTE::class);
+    yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
 	//yield MenuItem::linkToCrud('NOTIFICATION', 'fas fa-bell', NOTIFICATION::class);
     }
 }
